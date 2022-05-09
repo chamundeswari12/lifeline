@@ -1,7 +1,8 @@
 package com.lhs.entity;
 
-import java.sql.Date;
+import java.util.Date;
 import java.time.LocalTime;
+import java.util.Calendar;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -33,13 +34,7 @@ public class Appoinment {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
+
 	
 
 	public Date getDayid() {

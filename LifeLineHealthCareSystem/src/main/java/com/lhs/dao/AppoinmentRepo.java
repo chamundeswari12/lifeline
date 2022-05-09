@@ -10,12 +10,15 @@ import com.lhs.entity.AppoinmentStatus;
 import com.lhs.entity.Doctor;
 
 public interface AppoinmentRepo extends CrudRepository<Appoinment, Integer> {
-	@Query
-	Appoinment getAppoinment();
+//	@Query("select * from Appoinment a where a.apstatus='Booked' ")
+//	Appoinment getApstaus(Appoinment appoinment);
+
 	
 	Doctor findByDayid(Date dayid);
-	boolean  existsByApstatus(AppoinmentStatus appoinmentStatus);
+	Appoinment  existsByApstatus(AppoinmentStatus appoinmentStatus);
 	//boolean existsByApstatus(AppoinmentStatus apstatus);
+
+	Appoinment findByApstatus(AppoinmentStatus apstatus);
 	
 	
 

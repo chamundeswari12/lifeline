@@ -1,7 +1,8 @@
 package com.lhs.entity;
 
-import java.sql.Date;
+import java.util.Date;
 import java.time.LocalTime;
+import java.util.Calendar;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -36,7 +37,8 @@ public class SlotBooking {
 	
 	
 	
-	public SlotBooking(int id, Date dayid, LocalTime slot1, LocalTime slot2, LocalTime slot3, Doctor doctor) {
+	public SlotBooking(int id, 
+			Date dayid, LocalTime slot1, LocalTime slot2, LocalTime slot3, Doctor doctor) {
 		super();
 		this.id = id;
 		this.dayid = dayid;
@@ -101,7 +103,7 @@ public class SlotBooking {
 	public Date getDayid() {
 		return dayid;
 	}
-	public void setDayid(Date dayid) {
+	public void setDayid(java.util.Date dayid) {
 		this.dayid = dayid;
 	}
 

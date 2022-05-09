@@ -103,31 +103,46 @@ public class AppoinmentController {
     
     
     
-       
-    @PostMapping("/forBooking")
-    public ResponseEntity<String> slothold(@RequestBody Appoinment appoinment){
-    	 
-    	boolean y=appoinmentRepo.existsByApstatus(appoinment.getApstatus());
-    	System.out.println(y);
-    	if(y==false)
-    	
-    	{
-    		
-    		doctor.setId(doctor.getId());
-        	
-        	appoinment.setDoctor(doctor);
-        	 
-        	appoinmentService.slotBooking(appoinment);
-        	
-        	return new ResponseEntity<String>("slotBooked successfully with "+ doctor.getDoctorName(), HttpStatus.OK);
-    		
-    	}
-    	else
-    		return new ResponseEntity<String>("slotBooked already booked "+ doctor.getDoctorName(), HttpStatus.OK);
-    	
-    	
-    }
+//       
+//    @PostMapping("/forBooking")
+//    public ResponseEntity<String> slothold(@RequestBody Appoinment appoinment,@PathVariable Doctor doctor){
+//    	 
+//    	Appoinment y=appoinmentRepo.existsByApstatus(appoinment.getApstatus());
+//    	System.out.println(y);  
+//    	if(y==false)
+//    	
+//    	{    
+//    		
+//    		doctor.setId(doctor.getId());
+//    		
+//    		
+//    		
+//        	
+//        	appoinment.setDoctor(doctor);
+//        	 
+//        	appoinmentService.slotBooking(appoinment);
+//        	
+//        	return new ResponseEntity<String>("slotBooked successfully with "+ doctor.getDoctorName(), HttpStatus.OK);
+//    		
+//    	}
+//    	else
+//    		return new ResponseEntity<String>("slotBooked already booked "+ doctor.getDoctorName(), HttpStatus.OK);
+//    	
+//    	
+//    }
+//    
     
+    
+    
+    @PostMapping("/geetingstatus/{id}")
+    public Appoinment slotstatus(@RequestBody Appoinment appoinment, @PathVariable ("id") Doctor doctor){
+    	
+    	Appoinment y=appoinmentRepo.findByApstatus(appoinment.getApstatus());
+    	System.out.println(y);
+    	return y;
+    	
+    	 
+    }
     
     
     
