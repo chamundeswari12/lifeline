@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.aspectj.weaver.patterns.ConcreteCflowPointcut.Slot;
+
 @Entity
 public class Doctor {
 	   @Id
@@ -32,7 +34,20 @@ public class Doctor {
        @Enumerated(EnumType.STRING)
        private DoctorAvailablity status;
        
-      
+	   @OneToMany
+	   private List<Slot> slot;
+
+	public List<Slot> getSlot() {
+		return slot;
+	}
+
+
+
+	public void setSlot(List<Slot> slot) {
+		this.slot = slot;
+	}
+
+
 
 	public Doctor() {
        
