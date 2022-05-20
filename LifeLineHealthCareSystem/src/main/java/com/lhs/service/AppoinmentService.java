@@ -12,7 +12,7 @@ import com.lhs.dao.AppoinmentRepo;
 import com.lhs.dao.DoctorRepo;
 
 import com.lhs.entity.Appoinment;
-import com.lhs.entity.AppoinmentStatus;
+
 import com.lhs.entity.Doctor;
 
 

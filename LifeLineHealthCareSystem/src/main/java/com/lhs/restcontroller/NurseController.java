@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lhs.dao.AppoinmentRepo;
+import com.lhs.dao.NurseRepo;
 import com.lhs.entity.Appoinment;
-import com.lhs.entity.PatientPreData;
+import com.lhs.entity.Nurse;
+import com.lhs.entity.MonitoringData;
 import com.lhs.entity.RegistrationEntity;
 import com.lhs.service.NurseService;
 
@@ -33,34 +35,45 @@ public class NurseController {
 	@Autowired
 	AppoinmentRepo appoinmentRepo;
 	
-	private int count;
-	 
-	@PostMapping("/AddingPreData/{Id}")
-	public ResponseEntity<String> addingPreData(@RequestBody   PatientPreData patientPreData,@PathVariable("Id") RegistrationEntity entity)
+    @Autowired
+    NurseRepo nurseRepo;
+	
+	
+	@PostMapping("/nursedata")
+	public  ResponseEntity<String> AddingNurse(@RequestBody Nurse nurse)
 	{
-		System.out.println(patientPreData.getWeight());    	
+		nurseRepo.save(nurse);
+		return new ResponseEntity<String>("nurse added successfully"+nurse.getNurseName(),HttpStatus.OK);
+		
+	}
+	 
+	@PostMapping("/AddingPreData/{nurseid}/{patient_Id}")
+	public ResponseEntity<String> addingPreData(@RequestBody MonitoringData patientPreData,@PathVariable("patient_Id") RegistrationEntity entity,@PathVariable("nurseid") Nurse nurse)
+	{
+		patientPreData.setTemperature(patientPreData.getTemperature()+" °F");
+		patientPreData.setHeartRate(patientPreData.getHeartRate()+" BPM");
+		patientPreData.setWeight(patientPreData.getWeight()+" kgs");
 		patientPreData.setEntity(entity);
-		//System.out.println("hiii");
+		patientPreData.setNurse(nurse);
 		nurseService.preData(patientPreData);
-		//System.out.println("hello");
-		return new ResponseEntity<String>("preDataAddedByNurse",HttpStatus.OK);
+				return new ResponseEntity<String>("preDataAddedByNurse",HttpStatus.OK);
 	}
 	
 	
 	
-	@PostMapping("/currentDate")
-	 public String  currentAppoinments(@RequestBody Appoinment appoinment)
-	 {
-		
-		  LocalDateTime datetime1 = LocalDateTime.now();  
-		    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");  
-		    String formatDateTime = datetime1.format(format);   
-		    System.out.println(formatDateTime);    
-		
-		return formatDateTime ;
-		
-	 }
-	
+//	@PostMapping("/currentDate")    
+//	 public String  currentAppoinments(@RequestBody Appoinment appoinment)
+//	 {
+//		
+//		  LocalDateTime datetime1 = LocalDateTime.now();  
+//		    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");  
+//		    String formatDateTime = datetime1.format(format);   
+//		    System.out.println(formatDateTime);    
+//		
+//		return formatDateTime ;
+//		
+//	 }
+//	
 
 	//Getting current Date appoinments
 	@GetMapping("/CurrentdateAppoinments")
@@ -91,14 +104,32 @@ public class NurseController {
 	
 	
 	
-	@GetMapping("/upcomingappoinments")
+	@GetMapping("/upcomingappoinments")   
 	public ResponseEntity<?> upcomingAp(){
+		 LocalDate datetime1 = LocalDate.now();
+		 
+		 List<Appoinment> f= appoinmentRepo.findAllDateAfter(datetime1);
 		
+		 f.stream().map(Appoinment::getApstatus).collect(Collectors.toList());
+			
+			List<Appoinment> dummy= new ArrayList<>();
+	        for(Appoinment appoinment2 : f) 
+			    {
+				  
+					if( appoinment2.getApstatus()==true)
+					{   
+						dummy.add(appoinment2);
+				
+						
+					}
+			       
+		        }
+		System.out.println(dummy);
+		return new ResponseEntity<List<Appoinment>>( dummy,HttpStatus.OK);   
+				
+		}
 		
-		
-		
-		
-	}
+	
 	
 	
 

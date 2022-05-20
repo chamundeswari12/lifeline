@@ -3,7 +3,7 @@ package com.lhs.restcontroller;
 
 
 
-import java.text.DateFormat;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -24,7 +24,7 @@ import com.lhs.PlayLoad.AppoinmentDetails;
 import com.lhs.dao.AppoinmentRepo;
 
 import com.lhs.entity.Appoinment;
-import com.lhs.entity.AppoinmentStatus;
+
 import com.lhs.entity.Doctor;
 import com.lhs.entity.RegistrationEntity;
 import com.lhs.service.AppoinmentService;

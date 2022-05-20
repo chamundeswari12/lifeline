@@ -1,25 +1,27 @@
 package com.lhs.dao;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.lhs.entity.Appoinment;
-import com.lhs.entity.AppoinmentStatus;
+
 @Repository
 public interface AppoinmentRepo extends CrudRepository<Appoinment, Integer> {
 
-	Appoinment  existsByApstatus(AppoinmentStatus appoinmentStatus);
-	//boolean existsByApstatus(AppoinmentStatus apstatus);
+	
 
-    int  findByApstatus(int apstatus);
+    //int  findByApstatus(int apstatus);
 	
-  public  List<Appoinment>  findByDate(LocalDate date);
+    public  List<Appoinment>  findByDate(LocalDate date);
 
-	Appoinment findById(int id);
-	
-	
+	@Query("select a from Appoinment a where a.date > :LocalDate")
+	List<Appoinment> findAllDateAfter(
+		      @Param("LocalDate") LocalDate datetime1);
 
 }

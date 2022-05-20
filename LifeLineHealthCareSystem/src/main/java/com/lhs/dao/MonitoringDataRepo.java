@@ -3,8 +3,9 @@ package com.lhs.dao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.lhs.entity.PatientPreData;
+import com.lhs.entity.MonitoringData;
+
 @Repository
-public interface PatientPreDataRepo extends JpaRepository<PatientPreData, Integer> {
+public interface MonitoringDataRepo extends JpaRepository<MonitoringData, Integer> {
 
 }
