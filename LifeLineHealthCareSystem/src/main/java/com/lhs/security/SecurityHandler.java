@@ -21,7 +21,7 @@ import com.lhs.jwthandler.JwtFilter;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity
+//@EnableGlobalMethodSecurity
 public class SecurityHandler extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -30,9 +30,9 @@ public class SecurityHandler extends WebSecurityConfigurerAdapter {
 	JwtFilter filter;
     
     @Bean
- public BCryptPasswordEncoder passwordEncoder() {
-  	return new BCryptPasswordEncoder();
-    }
+     public BCryptPasswordEncoder passwordEncoder() {
+  	  return new BCryptPasswordEncoder();
+      }
 
 	
 

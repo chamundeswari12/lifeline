@@ -29,7 +29,7 @@ public class DoctorController {
 	DoctorRepo doctorRepo;
 
 	@PostMapping("/addingDoctors")
-	@PreAuthorize("hasRole('DOCTOR')")
+	//@PreAuthorize("hasRole('DOCTOR')")
 	public ResponseEntity<String> addingcontroller(@RequestBody Doctor doc) {
 
 		doctorService.addingDoctor(doc);
