@@ -27,25 +27,37 @@ public class NurseService implements NurseInterface {
 	}
 
 	
-	public void update(MonitoringData monitoringData)
-	{
-		monitoringDataRepo.save(monitoringData);
+	public MonitoringData update(MonitoringData monitoringData,int id)
+	
+	{    
+		MonitoringData f= monitoringDataRepo.findById(id);
+		System.out.println(f);
+		f.setBloodPressure(monitoringData.getBloodPressure());
+		f.setHeartRate(monitoringData.getHeartRate());
+		f.setHeight(monitoringData.getHeight());
+		f.setWeight(monitoringData.getWeight());
+		f.setTemperature(monitoringData.getTemperature());
+		 MonitoringData updatedUser=monitoringDataRepo.save(f);
+		 return updatedUser;
 	}
 
 
-	@Override
-	public MonitoringData getMonitoringDataById(int id) {
+//	@Override
+//	public MonitoringData getMonitoringDataById(MonitoringData data,int id) {
+//		
+//		Optional<MonitoringData> optional = monitoringDataRepo.findById(id);
+//		optional.se
+//		return monitoringDataRepo.save(data);
 		
-		Optional<MonitoringData> optional = monitoringDataRepo.findById(id);
-		MonitoringData data=null;
-		if (optional.isPresent()) {
-			data = optional.get();
-		} else {
-			throw new RuntimeException(" patient not found for id :: " + id);
-		}
-		monitoringDataRepo.save(data);
-		return data;
-	}
+//		MonitoringData data=null;
+//		if (optional.isPresent()) {
+//			data = optional.get();
+//		} else {
+//			throw new RuntimeException(" patient not found for id :: " + id);
+//		}
+//		monitoringDataRepo.save(data);
+//		return data;
+//	}
 	
 	
 

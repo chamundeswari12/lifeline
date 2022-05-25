@@ -4,6 +4,8 @@ import com.lhs.entity.MonitoringData;
 
 public interface NurseInterface {
 	
-	MonitoringData  getMonitoringDataById(int id);
+	
+
+	//MonitoringData getMonitoringDataById(MonitoringData data, int id);
 
 }

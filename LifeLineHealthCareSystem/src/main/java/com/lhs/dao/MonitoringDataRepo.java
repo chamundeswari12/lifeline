@@ -14,7 +14,7 @@ public interface MonitoringDataRepo extends JpaRepository<MonitoringData, Intege
 	void setMonitoringDataById(String bloodPressure, String heartRate, String weight, String temperature, long height,
 			int id);
 	
-	
+	 MonitoringData findById(int id);
 	
 
 }

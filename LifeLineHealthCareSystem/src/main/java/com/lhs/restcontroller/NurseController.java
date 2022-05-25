@@ -89,26 +89,16 @@ public class NurseController {
 		
 	}
 	
-//	@PutMapping("/updatingMonitoringData")
-//	public ResponseEntity<?> updateMonitoringData(@RequestBody MonitoringData data)
-//	{
-//		data.setTemperature(data.getTemperature()+" °F");
-//		data.setHeartRate(data.getHeartRate()+" BPM");
-//		data.setWeight(data.getWeight()+" kgs");
-//	    nurseService.update(data);	
-//	 return new ResponseEntity<String>("update successfully",HttpStatus.OK);
-//	}
+
 	
-	
-	@PutMapping("/updatingMonitoringData/id")
-	
+	@PutMapping("/update/{id}")
 	public ResponseEntity<?> updateMonitoringData(@RequestBody MonitoringData data,@PathVariable("id") int id)
 	{
 		data.setTemperature(data.getTemperature()+" °F");
 		data.setHeartRate(data.getHeartRate()+" BPM");
 		data.setWeight(data.getWeight()+" kgs");
 		
-		nurseService.getMonitoringDataById(id);
+		nurseService.update(data, id);
 		return new ResponseEntity<String>("update successfully",HttpStatus.OK);
 		
 	}
