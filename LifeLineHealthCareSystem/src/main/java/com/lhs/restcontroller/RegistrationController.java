@@ -139,6 +139,13 @@ public class RegistrationController {
 	 String log=principal.getName();
 	 service.updateuser(registrationDto,log);
 	 return "update successfully";
+	}
+	@GetMapping("/currentUser")
+	public String  Currentuser(Principal principal)
+	{
+	 String log=principal.getName();
+	 
+	    return log;
 	}}
 	
 //	@PostMapping("/sentotp")
